@@ -1,0 +1,20 @@
+h3.custom span{
+	text-decoration: underline;
+	color: red;
+}
+
+
+button#Print,
+button#Export,
+button#Import{
+		padding: 4px 10px;
+		border: 1px solid black;
+		background: transparent;
+		
+}
+
+button#Print,
+button#Export,
+button#Import i{
+	padding: 3px;
+}

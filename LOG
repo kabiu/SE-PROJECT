@@ -1,0 +1,108 @@
+======================================
+
+_> 	Track sales by user
+
+Receivings: Layout & Logic
+
+Tailor records specific to the store
+
+Update Transfers at recipient / sender
+
+order -- +location_id, user_id
+
+===============PROPOSED USER MENU=======================
+
+Dashboard
+
+Products
+|--	Add New
+|--	Product List
+|--	Product Categories
+|-- Receivings
+
+Sales
+|--	POS
+|--	Sales List
+
+=========================DB SCHEMA===============================
+
+|==== tbl_category
+* catid : int(11)
+* category : varchar(200)
+
+|==== tbl_invoice
+* invoice_id : int(11)
+* customer_name : varchar(100)
+* order_date : date
+* subtotal : double
+* tax : double
+* discount : double
+* total : double
+* paid : double
+* due : double
+* payment_type : tinytext
+
+|==== tbl_invoice_details
+* id : int(11)
+* invoice_id : int(11)
+* product_id : int(11)
+* product_name : varchar(100)
+* qty : int(11)
+* price : double
+* order_date : date
+
+|==== tbl_product
+* pid : int(11)
+* pname : varchar(200)
+* pcategory : varchar(200)
+* purchaseprice : float
+* saleprice : float
+* pstock : int(11)				//XX
+* pdescription : varchar(250)
+* pimage : varchar(200)
+
+++
+|==== tbl_inventory		==R
+entry_id
+product_id
+location_id
+quantity
+
+++
+|==== tbl_receivings	==R
+rec_id
+date_received
+warehouse_id
+
+
+|==== tbl_user
+* userid : int(11)
+* username : varchar(200)
+* useremail : varchar(200)
+* password : varchar(200)
+* role : varchar(50)
++ warehouse_id
+
+
+++
+|==== tbl_locations
+*location_id
+*location_name
+*location
+*location_description
+
+
+++
+|==== tbl_transfers
+*transfer_id
+*transfer_date
+*>from_warehouse_id
+*>to_warehouse_id
+*transfer_status
+
+++
+|==== tbl_transfers_details
+*entry_id
+*product_id
+*quantity
+

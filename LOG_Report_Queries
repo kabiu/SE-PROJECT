@@ -1,0 +1,28 @@
+FIELDS
+	inv.id, inv.invoice_id, inv.product_id, inv.product_name, inv.qty, inv.order_date, prod.pid, prod.pname, prod.pcategory, prod.purchaseprice, prod.saleprice, prod.pdescription, prod.pimage
+
+QUERY TEST 1
+	SELECT inv.id, inv.invoice_id, inv.product_id, inv.product_name, inv.qty, inv.order_date, prod.pid, prod.pname, prod.pcategory, prod.purchaseprice, 	prod.saleprice, prod.pdescription, prod.pimage FROM tbl_invoice_details as inv LEFT JOIN tbl_product as prod on inv.product_id = prod.pid
+
+QUERY TEST 2
+	SELECT inv.product_id, inv.product_name, sum(inv.qty) as count, inv.order_date, prod.pid, prod.pname, prod.pcategory, prod.purchaseprice, prod.saleprice, prod.pdescription, prod.pimage FROM tbl_invoice_details as inv LEFT JOIN tbl_product as prod on inv.product_id = prod.pid WHERE order_date between '2021-04-19' AND '2021-04-21' GROUP BY inv.product_id
+
+QUERY TEST 3
+	SELECT sum(inv.qty) as totalcount, prod.purchaseprice, prod.saleprice, (sum(inv.qty) * prod.purchaseprice)  as totalpurchasecost, (sum(inv.qty)*prod.saleprice) as totalsalecost FROM tbl_invoice_details as inv LEFT JOIN tbl_product as prod on inv.product_id = prod.pid WHERE order_date between '2021-04-19' AND '2021-04-21' GROUP BY inv.product_id
+
+
+QUERY TEST 4
+	SELECT inv.product_id, inv.product_name, prod.pcategory, prod.purchaseprice, prod.saleprice, (prod.saleprice-prod.purchaseprice) as profit, sum(inv.qty) as countsales, (sum(inv.qty)*prod.saleprice) as totalsales, (sum(inv.qty)*prod.saleprice-sum(inv.qty)*prod.purchaseprice) as netprofit FROM tbl_invoice_details as inv LEFT JOIN tbl_product as prod on inv.product_id = prod.pid WHERE order_date between '2021-04-19' AND '2021-04-21' GROUP BY inv.product_id
+
+
+product_id
+product_name
+pcategory
+purchaseprice
+saleprice
+profit
+countsales
+totalsales
+netprofit
+
+Product ID	Product Name	Category	Purchase Price	Sale Price	Profit	Count Sales	Total Sales	Net Profit
